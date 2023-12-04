@@ -1,19 +1,21 @@
 //Rotate Array
 
-const rotateArr = (arr, d, n) => {
-  const small = arr.slice(0, d);
-  let index = 0;
-  for (let i = d; i < arr.length; i++) {
-    arr[index++] = arr[i];
-  }
-  for (let i = 0; i < small.length; i++) {
-    arr[index++] = small[i];
-  }
-  return arr;
+const rotateArr = (nums, k) => {
+  k = k % nums.length;
+  const reverse = (a, b) => {
+    while (a < b) {
+      [nums[a], nums[b]] = [nums[b], nums[a]];
+      a++;
+      b--;
+    }
+  };
+  reverse(0, nums.length - 1);
+  reverse(0, k - 1);
+  reverse(k, nums.length - 1);
 };
 
-const arr = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
+const nums = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
 
-const result = rotateArr(arr, 3, arr.length);
+rotateArr(nums, 3);
 
-console.log(result);
+console.log(nums);
